@@ -1,8 +1,11 @@
+import org.json.JSONArray;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Client {
     private Socket clientSocket;
@@ -50,5 +53,14 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        Client client = new Client();
+        client.startConnection("127.0.0.1", 8989);
+        Scanner sc = new Scanner(System.in);
+        String response = client.sendMessage(sc.nextLine());
+        JSONArray jsonArray = new JSONArray(response);
+        System.out.println(jsonArray);
     }
 }

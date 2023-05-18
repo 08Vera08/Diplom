@@ -11,7 +11,7 @@ public class Server {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
-    private final File file = new File("C:\\Java\\Diplom\\pcs-final-diplom1-main\\pdfs");
+    private final File file = new File("pdfs");
 
     public void start(int port) {
         JSONArray jsonArray = new JSONArray();
@@ -37,12 +37,14 @@ public class Server {
         }
         String word = null;
         try {
+            //Scanner is = new Scanner(System.in);
             word = in.readLine();
             BooleanSearchEngine booleanSearchEngine = new BooleanSearchEngine(file);
             ArrayList<PageEntry> pages = (ArrayList<PageEntry>) booleanSearchEngine.search(word);
-            for (int i = 0; i < pages.size(); ++i) {
+            for(int i = 0; i < pages.size(); ++i){
                 jsonArray.put(pages.get(i));
             }
+            System.out.println(jsonArray);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,10 +70,4 @@ public class Server {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        Server server = new Server();
-        server.start(9898);
-    }
-
 }
