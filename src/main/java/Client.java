@@ -61,6 +61,6 @@ public class Client {
         Scanner sc = new Scanner(System.in);
         String response = client.sendMessage(sc.nextLine());
         JSONArray jsonArray = new JSONArray(response);
-        System.out.println(jsonArray);
+        System.out.println(jsonArray.toString());
     }
 }
