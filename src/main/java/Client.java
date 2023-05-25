@@ -32,13 +32,13 @@ public class Client {
 
     public String sendMessage(String msg) {
         out.println(msg);
-        String resp = null;
+        String response = null;
         try {
-            resp = in.readLine();
+            response = in.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return resp;
+        return response;
     }
 
     public void stopConnection() {
@@ -58,9 +58,11 @@ public class Client {
     public static void main(String[] args) {
         Client client = new Client();
         client.startConnection("127.0.0.1", 8989);
-        Scanner sc = new Scanner(System.in);
-        String response = client.sendMessage(sc.nextLine());
+        Scanner scanner = new Scanner(System.in);
+        String response = client.sendMessage(scanner.nextLine());
+
         JSONArray jsonArray = new JSONArray(response);
-        System.out.println(jsonArray.toString());
+        System.out.println(jsonArray);
+
     }
 }

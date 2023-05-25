@@ -37,13 +37,13 @@ public class BooleanSearchEngine implements SearchEngine {
 
                     if (word.equals("")) continue;
                     if (keys.containsKey(word)) {
-                        boolean f = true;
+                        boolean isFirst = true;
                         for (int l = 0; l < keys.get(word).size(); ++l) {
                             if (keys.get(word).get(l).getPdfName().equals(files[i].getName()) && keys.get(word).get(l).getPage() == j) {
-                                f = false;
+                                isFirst = false;
                             }
                         }
-                        if (f) {
+                        if (isFirst) {
                             keys.get(word).add(new PageEntry(files[i].getName(), j, freqs.get(word)));
                         }
                     } else {

@@ -4,6 +4,9 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
 
 public class Main {
 
@@ -19,11 +22,18 @@ public class Main {
                     JSONArray jsonArray = new JSONArray();
                     String word = in.readLine();
                     BooleanSearchEngine booleanSearchEngine = new BooleanSearchEngine(file);
+
                     ArrayList<PageEntry> pages = (ArrayList<PageEntry>) booleanSearchEngine.search(word);
-                    for (int i = 0; i < pages.size(); ++i) {
-                        jsonArray.put(pages.get(i));
+
+                    if (pages != null) {
+                        for (int i = 0; i < pages.size(); ++i) {
+                            jsonArray.put(pages.get(i));
+                        }
+                        out.print(jsonArray);
+                    } else {
+                        out.print(Collections.emptyList());
                     }
-                    out.print(jsonArray.toString());
+
                 }
             }
         } catch (IOException e) {
